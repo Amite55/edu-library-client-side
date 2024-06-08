@@ -3,7 +3,7 @@
 const FQA = () => {
     return (
         <div className="my-4 max-w-6xl mx-auto text-center">
-            <h1 className="text-3xl font-semibold text-green-500 my-5">FREQUENTLY ASKED QUESTIONS</h1>
+            <h1 className="text-3xl font-semibold text-teal-500 my-5 divider">FREQUENTLY ASKED QUESTIONS</h1>
 
             <div className="px-14 space-y-3">
                 <div className="collapse collapse-plus bg-base-200">
