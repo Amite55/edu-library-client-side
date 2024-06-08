@@ -1,8 +1,60 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../assets/images/login/login.jpg'
 import logo from '../assets/images/logo.png'
+import { FaGithub } from "react-icons/fa6";
+import toast from 'react-hot-toast';
+import useAuth from '../customHooks/useAuth';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const {signIn, signInWithGoogle, signInWithGithub} = useAuth();
+
+
+
+    //  ================ google login ====================
+    const handleGoogleLogin = async () => {
+      try {
+           await signInWithGoogle();
+          toast.success('login success')
+          navigate('/')
+      } catch (err) {
+          console.log(err);
+          toast.error(err?.message)
+      }
+  }
+  // ============= github login================
+    const handleGithubLogin = async () => {
+      try {
+           await signInWithGithub();
+          toast.success('login success')
+          navigate('/')
+         
+      } catch (err) {
+          console.log(err);
+          toast.error(err?.message)
+      }
+  }
+
+
+  const handleSignInUser = async(e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    try {
+       await signIn(email, password)
+      toast.success('signIN successfully')
+      navigate('/')
+    }
+    catch(err) {
+      console.log(err);
+      toast.error(err?.message)
+    }
+  }
+
+
     return (
         <div className=' my-10 flex justify-center items-center min-h-[calc(100vh-306px)]'>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
@@ -23,8 +75,8 @@ const Login = () => {
           <p className='mt-3 text-xl text-center text-gray-600 '>
             Welcome back!
           </p>
-
-          <div className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
+          {/* =========== google login ================= */}
+          <div onClick={handleGoogleLogin} className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
             <div className='px-4 py-2'>
               <svg className='w-6 h-6' viewBox='0 0 40 40'>
                 <path
@@ -50,6 +102,18 @@ const Login = () => {
               Sign in with Google
             </span>
           </div>
+          {/* =========== github login ================= */}
+          <div onClick={handleGithubLogin} className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
+            <div className='px-4 py-2'>
+                <FaGithub/>
+            </div>
+
+            <span className='w-5/6 px-4 py-3 font-bold text-center'>
+              Sign in with Github
+            </span>
+          </div>
+
+
 
           <div className='flex items-center justify-between mt-4'>
             <span className='w-1/5 border-b  lg:w-1/4'></span>
@@ -60,7 +124,7 @@ const Login = () => {
 
             <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
           </div>
-          <form>
+          <form onSubmit={handleSignInUser}>
             <div className='mt-4'>
               <label
                 className='block mb-2 text-sm font-medium text-gray-600 '

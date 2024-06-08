@@ -1,8 +1,85 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../assets/images/register/register.jpg'
 import logo from '../assets/images/logo.png'
 import { FaGithub } from "react-icons/fa6";
+import useAuth from '../customHooks/useAuth';
+import toast from 'react-hot-toast';
+import { useEffect, useState } from 'react';
+
 const Register = () => {
+  // const [registerErr, setRegisterErr] = useState('');
+  // const [capitalErr, setCapitalErr] = useState('');
+  // const [spacialErr, setSpacialErr] = useState('');
+  const {createUser, setUser, signInWithGoogle, updateUserProfile, signInWithGithub} = useAuth();
+
+  const navigate = useNavigate();
+
+
+
+  //  ================ google login ====================
+  const handleGoogleLogin = async () => {
+    try {
+         await signInWithGoogle();
+        toast.success('login success')
+        navigate('/')
+    } catch (err) {
+        console.log(err);
+        toast.error(err?.message)
+    }
+}
+// ============= github login================
+  const handleGithubLogin = async () => {
+    try {
+         await signInWithGithub();
+        toast.success('login success')
+        navigate('/')
+       
+    } catch (err) {
+        console.log(err);
+        toast.error(err?.message)
+    }
+}
+
+
+  const handleSignUpUser = async (e) => {
+    e.preventDefault();
+  const form = e.target;
+  const name = form.name.value;
+  const photo = form.photo.value;
+  const email = form.email.value;
+  const password = form.password.value;
+ console.log({name, photo, email, password});
+//  password validation ====================
+//  setRegisterErr('');
+//  setCapitalErr('');
+//  setSpacialErr('');
+//  if(password.length < 6){
+//   setRegisterErr(' is less than 6 characters')
+//   return;
+// }
+// else if(!/A-Z/.test(password)){
+//   setCapitalErr('don,t have a capital letter')
+//   return;
+// }
+// else if(!/^[0-9!@#$%^&*)(+=._-]$/.test(password)){
+//     setSpacialErr(' don,t have a special character')
+//     return;
+// }
+
+ try{
+  const result = await createUser(email, password)
+  console.log(result);
+  await updateUserProfile( name, photo)
+  setUser({...result?.user,  displayName: name, photoURL: photo});
+  toast.success('register successfully')
+  navigate('/')
+}
+catch(err) {
+  console.log(err);
+  toast.error('please try agin')
+}
+  }
+
     return (
         <div className='my-10 flex justify-center items-center min-h-[calc(100vh-306px)]'>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
@@ -18,8 +95,9 @@ const Register = () => {
           <p className='mt-3 text-xl text-center text-gray-600 '>
             Get Your Free Account Now.
           </p>
+        {/* ============== google login ================*/}
+          <div  onClick={handleGoogleLogin} className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
 
-          <div className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
             <div className='px-4 py-2'>
               <svg className='w-6 h-6' viewBox='0 0 40 40'>
                 <path
@@ -45,14 +123,17 @@ const Register = () => {
               Sign in with Google
             </span>
           </div>
-          <div className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
+
+          {/* =============== github login ============== */}
+
+          <div onClick={handleGithubLogin} className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
             <div className='px-4 py-2'>
             <FaGithub />
 
             </div>
 
             <span className='w-5/6 px-4 py-3 font-bold text-center'>
-              Sign in with Google
+              Sign in with Github
             </span>
           </div>
 
@@ -65,7 +146,10 @@ const Register = () => {
 
             <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
           </div>
-          <form>
+
+        {/* ================== input form ================ */}
+
+          <form onSubmit={handleSignUpUser}>
             <div className='mt-4'>
               <label
                 className='block mb-2 text-sm font-medium text-gray-600 '
@@ -77,6 +161,7 @@ const Register = () => {
                 id='name'
                 autoComplete='name'
                 name='name'
+                required
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                 type='text'
               />
@@ -93,7 +178,8 @@ const Register = () => {
                 autoComplete='photo'
                 name='photo'
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                type='text'
+                type='url'
+              
               />
             </div>
             <div className='mt-4'>
@@ -107,6 +193,7 @@ const Register = () => {
                 id='LoggingEmailAddress'
                 autoComplete='email'
                 name='email'
+                required
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                 type='email'
               />
@@ -126,9 +213,19 @@ const Register = () => {
                 id='loggingPassword'
                 autoComplete='current-password'
                 name='password'
+                required
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                 type='password'
               />
+             {/* {
+              registerErr && <span className='text-red-500'>{registerErr}</span>
+             }
+             {
+              capitalErr && <span className='text-rose-500'>{capitalErr}</span>
+             }
+             {
+              spacialErr && <span className='text-red-500'>{spacialErr}</span>
+             } */}
             </div>
             <div className='mt-6'>
               <button
@@ -139,7 +236,6 @@ const Register = () => {
               </button>
             </div>
           </form>
-
           <div className='flex items-center justify-between mt-4'>
             <span className='w-1/5 border-b  md:w-1/4'></span>
 
