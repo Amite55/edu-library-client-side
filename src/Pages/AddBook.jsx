@@ -1,101 +1,122 @@
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const category = form.category.value;
+        const quantity = form.quantity.value;
+        const rating = form.rating.value;
+        const author_name = form.author_name.value;
+        const image = form.image.value;
+        const description = form.description.value;
+
+        const bookData = {name, category, quantity, rating, author_name, image, description};
+        
+        try{
+            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/book`, bookData)
+            console.log(data);
+            toast.success('Book Added succuss')
+            navigate('/')
+        } catch(err) {
+            console.log(err);
+            toast.error('Book add failed');
+        }
+    }
     return (
-        <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
-          <section className=' p-2 md:p-6 mx-auto bg-white rounded-md shadow-md '>
-            <h2 className='text-lg font-semibold text-gray-700 capitalize '>
-              Post a Job
-            </h2>
-    
-            <form>
-              <div className='grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2'>
-                <div>
-                  <label className='text-gray-700 ' htmlFor='job_title'>
-                    Job Title
-                  </label>
-                  <input
-                    id='job_title'
-                    name='job_title'
-                    type='text'
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                  />
+        <div className="bg-[#8f8f8f] p-24">
+            <h1 className="mx-auto text-4xl text-black font-bold font-mono">Add New Books </h1>
+            <form onSubmit={handleSubmit}>
+                <div className="md:flex">
+                    <div className="form-control md:w-1/2">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Name <span className="text-red-700">*</span> </span>
+                        </label>
+                        <input name="name" type="text" placeholder="Book Name" className="input input-bordered w-full" />
+                    </div>
+
+                    <div className="form-control ml-3 md:w-1/2">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Category Name <span className="text-red-700">*</span> </span>
+                        </label>
+                        <select
+                            name='category'
+                            id='category'
+                            className='border-none p-2 rounded-md'
+                        >
+                            <option value='Thriller'>Thriller</option>
+                            <option value='Novel'>Novel</option>
+                            <option value='History'>History</option>
+                            <option value='Drama'>Drama</option>
+                        </select>
+                    </div>
                 </div>
-    
-                <div>
-                  <label className='text-gray-700 ' htmlFor='emailAddress'>
-                    Email Address
-                  </label>
-                  <input
-                    id='emailAddress'
-                    type='email'
-                    name='email'
-                    disabled
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                  />
+
+                <div className="md:flex">
+                    <div className="form-control md:w-1/2">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Quantity <span className="text-red-700">*</span> </span>
+                        </label>
+                        <input name="quantity" type="number" className="input input-bordered w-full" />
+                    </div>
+
+                    <div className="form-control ml-3 md:w-1/2">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Rating (max rate 5) <span className="text-red-700">*</span> </span>
+                        </label>
+                        <input name="rating" type="number" max={5} className="input input-bordered w-full" />
+                    </div>
                 </div>
-                <div className='flex flex-col gap-2 '>
-                  <label className='text-gray-700'>Deadline</label>
-    
-                  {/* Date Picker Input Field */}
+                <div className="md:flex">
+                    <div className="form-control md:w-1/2">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Author Name <span className="text-red-700">*</span> </span>
+                        </label>
+                        <input name="author_name" type="text" placeholder="Author Name" className="input input-bordered w-full" />
+                    </div>
+
+                    <div className="form-control ml-3 md:w-1/2">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Time</span>
+                        </label>
+                        <input name="time" type="time" className="input input-bordered w-full" />
+                    </div>
                 </div>
-    
-                <div className='flex flex-col gap-2 '>
-                  <label className='text-gray-700 ' htmlFor='category'>
-                    Category
-                  </label>
-                  <select
-                    name='category'
-                    id='category'
-                    className='border p-2 rounded-md'
-                  >
-                    <option value='Web Development'>Web Development</option>
-                    <option value='Graphics Design'>Graphics Design</option>
-                    <option value='Digital Marketing'>Digital Marketing</option>
-                  </select>
+
+                <div className="">
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Photo URL <span className="text-red-700">*</span> </span>
+                        </label>
+                        <input name="image" type="url" placeholder="Photo URL" className="input input-bordered w-full" />
+                    </div>
                 </div>
-                <div>
-                  <label className='text-gray-700 ' htmlFor='min_price'>
-                    Minimum Price
-                  </label>
-                  <input
-                    id='min_price'
-                    name='min_price'
-                    type='number'
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                  />
+
+                <div className="">
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text text-black font-bold">Description <span className="text-red-700">*</span> </span>
+                        </label>
+
+                        <input name="description" type="text" placeholder="Description" className="input input-bordered w-full" />
+                    </div>
                 </div>
-    
-                <div>
-                  <label className='text-gray-700 ' htmlFor='max_price'>
-                    Maximum Price
-                  </label>
-                  <input
-                    id='max_price'
-                    name='max_price'
-                    type='number'
-                    className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                  />
+
+                <div className="">
+                    <div className="form-control w-1/3 mx-auto mt-5">
+                        <input type="submit" value="Add" className="input input-bordered w-full bg-stone-700 btn" />
+                    </div>
                 </div>
-              </div>
-              <div className='flex flex-col gap-2 mt-4'>
-                <label className='text-gray-700 ' htmlFor='description'>
-                  Description
-                </label>
-                <textarea
-                  className='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring'
-                  name='description'
-                  id='description'
-                ></textarea>
-              </div>
-              <div className='flex justify-end mt-6'>
-                <button className='px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600'>
-                  Save
-                </button>
-              </div>
+
+
             </form>
-          </section>
         </div>
-      )
+    );
 };
 
 export default AddBook;
