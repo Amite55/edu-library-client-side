@@ -10,7 +10,8 @@ const Navbar = () => {
   const navList = <>
   <li><NavLink to="/">Home</NavLink></li>
   <li><Link to='/addBook' className='justify-between'>Add Book</Link></li>
-  <li><Link to='' className='justify-between'>`Borrowed Books</Link></li>
+  <li><Link to='/allBooks' className='justify-between'>All Books</Link></li>
+  <li><Link to='/borrowed' className='justify-between'>Borrowed Books</Link></li>
   {
     !user && <li><NavLink to="/login">Login</NavLink></li>
   }

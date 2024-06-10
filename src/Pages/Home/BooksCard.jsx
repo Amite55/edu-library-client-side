@@ -6,7 +6,7 @@ const BooksCard = ({book}) => {
     return (
         <div className="card card-compact  bg-base-100 shadow-xl">
           <div> 
-          <figure><img className="hover:scale-110 rounded-md" src={image} alt="Shoes" /></figure>
+          <figure><img  className="hover:scale-110 rounded-md h-[200px]" src={image} alt="Shoes" /></figure>
           </div>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
