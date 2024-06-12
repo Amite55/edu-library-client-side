@@ -4,6 +4,7 @@ import logo from '../assets/images/logo.png'
 import { FaGithub } from "react-icons/fa6";
 import toast from 'react-hot-toast';
 import useAuth from '../customHooks/useAuth';
+import axios from 'axios';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,11 @@ const Login = () => {
     //  ================ google login ====================
     const handleGoogleLogin = async () => {
       try {
-           await signInWithGoogle();
+          const result = await signInWithGoogle();
+          const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+            email: result?.user?.email
+          }, {withCredentials: true})
+          console.log(data);
           toast.success('login success')
           navigate('/')
       } catch (err) {
@@ -25,7 +30,11 @@ const Login = () => {
   // ============= github login================
     const handleGithubLogin = async () => {
       try {
-           await signInWithGithub();
+          const result = await signInWithGithub();
+           const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+            email: result?.user?.email
+          }, {withCredentials: true})
+          console.log(data);
           toast.success('login success')
           navigate('/')
          
@@ -44,7 +53,11 @@ const Login = () => {
     console.log(email, password);
 
     try {
-       await signIn(email, password)
+      const result = await signIn(email, password)
+       const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+        email: result?.user?.email
+      }, {withCredentials: true})
+      console.log(data);
       toast.success('signIN successfully')
       navigate('/')
     }

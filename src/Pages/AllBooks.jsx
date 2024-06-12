@@ -10,7 +10,7 @@ const AllBooks = () => {
     const [books, setBooks] = useState([]);
     useEffect(()=> {
         const getData = async() => {
-            const {data} = await axios(`${import.meta.env.VITE_API_URL}/books`)
+            const {data} = await axios(`${import.meta.env.VITE_API_URL}/books`, {withCredentials: true})
             setBooks(data)
         }
         getData();

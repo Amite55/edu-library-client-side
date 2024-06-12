@@ -4,7 +4,8 @@ import logo from '../assets/images/logo.png'
 import { FaGithub } from "react-icons/fa6";
 import useAuth from '../customHooks/useAuth';
 import toast from 'react-hot-toast';
-import { useEffect, useState } from 'react';
+import axios from 'axios';
+// import { useEffect, useState } from 'react';
 
 const Register = () => {
   // const [registerErr, setRegisterErr] = useState('');
@@ -19,7 +20,11 @@ const Register = () => {
   //  ================ google login ====================
   const handleGoogleLogin = async () => {
     try {
-         await signInWithGoogle();
+        const result = await signInWithGoogle();
+         const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+          email: result?.user?.email
+        }, {withCredentials: true})
+        console.log(data);
         toast.success('login success')
         navigate('/')
     } catch (err) {
@@ -30,7 +35,11 @@ const Register = () => {
 // ============= github login================
   const handleGithubLogin = async () => {
     try {
-         await signInWithGithub();
+        const result = await signInWithGithub();
+         const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+          email: result?.user?.email
+        }, {withCredentials: true})
+        console.log(data);
         toast.success('login success')
         navigate('/')
        
@@ -71,6 +80,10 @@ const Register = () => {
   console.log(result);
   await updateUserProfile( name, photo)
   setUser({...result?.user,  displayName: name, photoURL: photo});
+  const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+    email: result?.user?.email
+  }, {withCredentials: true})
+  console.log(data);
   toast.success('register successfully')
   navigate('/')
 }
