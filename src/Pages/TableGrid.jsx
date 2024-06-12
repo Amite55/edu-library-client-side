@@ -6,11 +6,11 @@ const TableGrid = () => {
     return (
         <div>
             <div className="flex justify-end gap-4 mr-4 mt-3">
-                <Link to='table' title="Table view" className="text-2xl text-white btn">
+                <Link title="Table view" className="text-2xl text-white btn">
                     <FaTable />
                 </Link>
 
-                <Link to='grid' title="Grid view" className="text-2xl text-white btn">
+                <Link  title="Grid view" className="text-2xl text-white btn">
                     <CiGrid41 />
                 </Link>
             </div>

@@ -11,6 +11,7 @@ import AllBooks from "../Pages/AllBooks";
 import BooksTable from "../Pages/BooksTable";
 import BooksGrid from "../Pages/BooksGrid";
 import BorrowedMeBooks from "../Pages/BorrowedMeBooks";
+import UpdateBooks from "../Pages/UpdateBooks";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
         {
           path: '/book/:id',
           element: <BooksDetails/>,
+          loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`)
+        },
+        {
+          path: '/updateBooks/:id',
+          element: <UpdateBooks/>,
           loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`)
         },
         {
