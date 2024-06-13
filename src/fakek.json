@@ -6,7 +6,8 @@
         "category": "Thriller",
         "rating": 4.3,
         "quantity": 12,
-        "description": "A gripping tale of suspense and mystery."
+        "description": "A gripping tale of suspense and mystery.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Whispering Shadows",
@@ -15,7 +16,8 @@
         "category": "Thriller",
         "rating": 4.0,
         "quantity": 8,
-        "description": "An intricate thriller set in Hong Kong."
+        "description": "An intricate thriller set in Hong Kong.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Gone Girl",
@@ -24,7 +26,8 @@
         "category": "Thriller",
         "rating": 4.5,
         "quantity": 15,
-        "description": "A dark, psychological thriller about a missing wife."
+        "description": "A dark, psychological thriller about a missing wife.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "The Girl with the Dragon Tattoo",
@@ -33,7 +36,8 @@
         "category": "Thriller",
         "rating": 4.4,
         "quantity": 10,
-        "description": "A spellbinding mystery involving a journalist and a hacker."
+        "description": "A spellbinding mystery involving a journalist and a hacker.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Big Little Lies",
@@ -42,7 +46,8 @@
         "category": "Thriller",
         "rating": 4.6,
         "quantity": 9,
-        "description": "A compelling story of secrets and betrayals."
+        "description": "A compelling story of secrets and betrayals.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "To Kill a Mockingbird",
@@ -51,7 +56,8 @@
         "category": "Novel",
         "rating": 4.8,
         "quantity": 20,
-        "description": "A classic novel of racism and injustice in the deep South."
+        "description": "A classic novel of racism and injustice in the deep South.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Pride and Prejudice",
@@ -60,7 +66,8 @@
         "category": "Novel",
         "rating": 4.7,
         "quantity": 18,
-        "description": "A beloved romantic novel set in the early 19th century."
+        "description": "A beloved romantic novel set in the early 19th century.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "1984",
@@ -69,7 +76,8 @@
         "category": "Novel",
         "rating": 4.6,
         "quantity": 14,
-        "description": "A dystopian novel about totalitarianism and surveillance."
+        "description": "A dystopian novel about totalitarianism and surveillance.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "The Great Gatsby",
@@ -78,7 +86,8 @@
         "category": "Novel",
         "rating": 4.4,
         "quantity": 22,
-        "description": "A tragic story of Jay Gatsby and his unrequited love for Daisy Buchanan."
+        "description": "A tragic story of Jay Gatsby and his unrequited love for Daisy Buchanan.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Moby Dick",
@@ -87,7 +96,8 @@
         "category": "Novel",
         "rating": 4.1,
         "quantity": 5,
-        "description": "The epic tale of Captain Ahab's obsessive quest to kill the white whale."
+        "description": "The epic tale of Captain Ahab's obsessive quest to kill the white whale.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "The Diary of a Young Girl",
@@ -96,7 +106,8 @@
         "category": "History",
         "rating": 4.9,
         "quantity": 16,
-        "description": "The poignant diary of Anne Frank during World War II."
+        "description": "The poignant diary of Anne Frank during World War II.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "The Wright Brothers",
@@ -105,7 +116,8 @@
         "category": "History",
         "rating": 4.5,
         "quantity": 7,
-        "description": "The fascinating story of the brothers who invented the airplane."
+        "description": "The fascinating story of the brothers who invented the airplane.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Team of Rivals",
@@ -114,7 +126,8 @@
         "category": "History",
         "rating": 4.8,
         "quantity": 11,
-        "description": "The political genius of Abraham Lincoln."
+        "description": "The political genius of Abraham Lincoln.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Sapiens: A Brief History of Humankind",
@@ -123,7 +136,8 @@
         "category": "History",
         "rating": 4.7,
         "quantity": 9,
-        "description": "An exploration of the history of our species."
+        "description": "An exploration of the history of our species.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Guns, Germs, and Steel",
@@ -132,7 +146,8 @@
         "category": "History",
         "rating": 4.6,
         "quantity": 13,
-        "description": "A groundbreaking look at the factors that shaped human history."
+        "description": "A groundbreaking look at the factors that shaped human history.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Hamlet",
@@ -141,7 +156,8 @@
         "category": "Drama",
         "rating": 4.9,
         "quantity": 6,
-        "description": "The tragic tale of the Prince of Denmark."
+        "description": "The tragic tale of the Prince of Denmark.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Death of a Salesman",
@@ -150,7 +166,8 @@
         "category": "Drama",
         "rating": 4.8,
         "quantity": 8,
-        "description": "A powerful drama about the American Dream."
+        "description": "A powerful drama about the American Dream.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "A Streetcar Named Desire",
@@ -159,7 +176,8 @@
         "category": "Drama",
         "rating": 4.7,
         "quantity": 10,
-        "description": "A poignant drama about the decline of Blanche DuBois."
+        "description": "A poignant drama about the decline of Blanche DuBois.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "The Crucible",
@@ -168,7 +186,8 @@
         "category": "Drama",
         "rating": 4.6,
         "quantity": 12,
-        "description": "A gripping tale of the Salem witch trials."
+        "description": "A gripping tale of the Salem witch trials.",
+        "email": "amite403@gmail.com"
     },
     {
         "name": "Oedipus Rex",
@@ -177,7 +196,8 @@
         "category": "Drama",
         "rating": 4.8,
         "quantity": 5,
-        "description": "The tragic story of Oedipus, King of Thebes."
+        "description": "The tragic story of Oedipus, King of Thebes.",
+        "email": "amite403@gmail.com"
     }
 ]
 

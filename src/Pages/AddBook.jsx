@@ -19,7 +19,7 @@ const AddBook = () => {
         const bookData = {name, category, quantity, rating, author_name, image, description};
         
         try{
-            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/book`, bookData)
+            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/book`, bookData, {withCredentials: true})
             console.log(data);
             toast.success('Book Added succuss')
             navigate('/')

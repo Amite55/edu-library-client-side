@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../assets/images/login/login.jpg'
 import logo from '../assets/images/logo.png'
 import { FaGithub } from "react-icons/fa6";
@@ -8,9 +8,10 @@ import axios from 'axios';
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const {signIn, signInWithGoogle, signInWithGithub} = useAuth();
 
-
+  const from = location.state || '/';
 
     //  ================ google login ====================
     const handleGoogleLogin = async () => {
@@ -21,7 +22,7 @@ const Login = () => {
           }, {withCredentials: true})
           console.log(data);
           toast.success('login success')
-          navigate('/')
+          navigate(from, {replace: true})
       } catch (err) {
           console.log(err);
           toast.error(err?.message)
@@ -36,7 +37,7 @@ const Login = () => {
           }, {withCredentials: true})
           console.log(data);
           toast.success('login success')
-          navigate('/')
+          navigate(from, {replace: true})
          
       } catch (err) {
           console.log(err);
@@ -59,7 +60,7 @@ const Login = () => {
       }, {withCredentials: true})
       console.log(data);
       toast.success('signIN successfully')
-      navigate('/')
+      navigate(from, {replace: true})
     }
     catch(err) {
       console.log(err);

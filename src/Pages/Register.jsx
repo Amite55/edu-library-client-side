@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../assets/images/register/register.jpg'
 import logo from '../assets/images/logo.png'
 import { FaGithub } from "react-icons/fa6";
@@ -11,10 +11,11 @@ const Register = () => {
   // const [registerErr, setRegisterErr] = useState('');
   // const [capitalErr, setCapitalErr] = useState('');
   // const [spacialErr, setSpacialErr] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
   const {createUser, setUser, signInWithGoogle, updateUserProfile, signInWithGithub} = useAuth();
 
-  const navigate = useNavigate();
-
+ const from = location.state || '/';
 
 
   //  ================ google login ====================
@@ -26,7 +27,7 @@ const Register = () => {
         }, {withCredentials: true})
         console.log(data);
         toast.success('login success')
-        navigate('/')
+        navigate(from, {replace: true})
     } catch (err) {
         console.log(err);
         toast.error(err?.message)
@@ -41,7 +42,7 @@ const Register = () => {
         }, {withCredentials: true})
         console.log(data);
         toast.success('login success')
-        navigate('/')
+        navigate(from, {replace: true})
        
     } catch (err) {
         console.log(err);
@@ -85,7 +86,7 @@ const Register = () => {
   }, {withCredentials: true})
   console.log(data);
   toast.success('register successfully')
-  navigate('/')
+  navigate(from, {replace: true})
 }
 catch(err) {
   console.log(err);

@@ -29,8 +29,9 @@ const BooksDetails = () => {
 		}
 
 		const borrowedBooks = {
-			email, displayName, name, category, image, description, dateline
+			email, displayName, name, category, image, description, dateline, quantity
 		}
+		console.log(typeof(quantity));
 		try {
 			const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/borrowed`, borrowedBooks)
 			console.log(data);
