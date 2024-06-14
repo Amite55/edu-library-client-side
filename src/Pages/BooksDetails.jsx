@@ -31,7 +31,6 @@ const BooksDetails = () => {
 		const borrowedBooks = {
 			email, displayName, name, category, image, description, dateline, quantity
 		}
-		console.log(typeof(quantity));
 		try {
 			const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/borrowed`, borrowedBooks)
 			console.log(data);
@@ -75,7 +74,7 @@ const BooksDetails = () => {
 					<p className="mb-5 font-bold">Quantity: {quantity}</p>
 					<div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
 
-						<Link onClick={handleBorrowedBooks} className="btn btn-md text-xl btn-outline btn-info w-full">Borrow</Link>
+						<Link onClick={handleBorrowedBooks} to='/borrowed' className="btn btn-md text-xl btn-outline btn-info w-full">Borrow</Link>
 					</div>
 				</div>
 			</div>
