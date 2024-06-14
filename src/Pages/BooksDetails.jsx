@@ -13,7 +13,7 @@ const BooksDetails = () => {
 	const { user } = useAuth();
 
 	const book = useLoaderData();
-	const { quantity, name, category, image, description, rating, author_name } = book || {};
+	const { quantity, _id, name, category, image, description, rating, author_name } = book || {};
 	const handleBorrowedBooks = async () => {
 		const email = user?.email;
 		const displayName = user?.displayName;
@@ -29,7 +29,7 @@ const BooksDetails = () => {
 		}
 
 		const borrowedBooks = {
-			email, displayName, name, category, image, description, dateline, quantity
+			email, displayName, name, category, image, description, dateline, quantity, bookId:_id
 		}
 		try {
 			const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/borrowed`, borrowedBooks)
@@ -66,7 +66,14 @@ const BooksDetails = () => {
 					<div className="divider"></div>
 					<div className="flex justify-between px-6">
 						<p className="underline font-bold">Rating: {rating}</p>
-						<p className=" bg-green-100/60 text-green-600 px-2 rounded-full">{category}</p>
+
+						<p className={` px-2 rounded-full
+							${category === 'Thriller' && 'bg-yellow-100/60 text-yellow-600' }
+							${category === 'Novel' && 'bg-orange-100/60 text-orange-600' }
+							${category === 'History' && 'bg-blue-100/60 text-blue-600' }
+							${category === 'Drama' && 'bg-teal-100/60 text-teal-600' }
+							`}>{category}</p>
+
 					</div>
 					<p className="mt-6 mb-8 text-lg sm:mb-12">
 						{description}

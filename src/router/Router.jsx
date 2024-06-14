@@ -39,18 +39,15 @@ const router = createBrowserRouter([
 
         {
           path: '/allBooks',
-          element: <AllBooks/>,
-          children:[
-            {
-              index: true,
-              // path: 'table',
-              element: <BooksTable/>
-            },
-            {
-             path:'grid',
-              element: <BooksGrid/>
-            }
-          ]
+          element: <AllBooks/>
+        },
+        {
+          path: '/table',
+          element: <BooksTable/>
+        },
+        {
+          path:'/grid',
+          element: <BooksGrid/>
         },
         {
           path: '/book/:id',

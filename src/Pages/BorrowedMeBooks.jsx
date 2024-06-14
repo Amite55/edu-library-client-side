@@ -13,7 +13,7 @@ const BorrowedMeBooks = () => {
 
         getData();
     }, [user?.email])
-    console.log(borrowedBooks);
+   
 
     const getData = async () => {
         const { data } = await axios(`${import.meta.env.VITE_API_URL}/borrowed/${user?.email}`)
@@ -52,7 +52,12 @@ const BorrowedMeBooks = () => {
 
                                 <div className="grid grid-cols-2 gap-5">
                                     <p>Rating: {borrowed.rating}</p>
-                                    <p className=" mx-auto bg-green-100/60 text-green-600 px-2 rounded-full">{borrowed.category}</p>
+                                    <p className={`px-2 mx-auto rounded-full
+							${borrowed.category === 'Thriller' && 'bg-yellow-100/60 text-yellow-600' }
+							${borrowed.category === 'Novel' && 'bg-orange-100/60 text-orange-600' }
+							${borrowed.category === 'History' && 'bg-blue-100/60 text-blue-600' }
+							${borrowed.category === 'Drama' && 'bg-teal-100/60 text-teal-600'}
+							`}>{borrowed.category}</p>
                                 </div>
                                 <p>{borrowed.description}</p>
                                 <div className="flex justify-between">

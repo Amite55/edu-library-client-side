@@ -14,7 +14,12 @@ const BooksGrid = ({book}) => {
               <h4 className='flex items-center gap-2'><FaUserPen /> {author_name} </h4>
               <div className="grid grid-cols-2 gap-5">
              <p>Rating: {rating}</p>
-              <p className=" mx-auto bg-green-100/60 text-green-600 px-2 rounded-full">{category}</p>
+              <p className={`px-2 mx-auto rounded-full
+							${category === 'Thriller' && 'bg-yellow-100/60 text-yellow-600' }
+							${category === 'Novel' && 'bg-orange-100/60 text-orange-600' }
+							${category === 'History' && 'bg-blue-100/60 text-blue-600' }
+							${category === 'Drama' && 'bg-teal-100/60 text-teal-600' }
+							`}>{category}</p>
               </div>
               <p>{description}</p>
               <div className=" w-full ">

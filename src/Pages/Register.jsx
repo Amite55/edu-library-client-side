@@ -5,12 +5,12 @@ import { FaGithub } from "react-icons/fa6";
 import useAuth from '../customHooks/useAuth';
 import toast from 'react-hot-toast';
 import axios from 'axios';
-// import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Register = () => {
-  // const [registerErr, setRegisterErr] = useState('');
-  // const [capitalErr, setCapitalErr] = useState('');
-  // const [spacialErr, setSpacialErr] = useState('');
+  const [registerErr, setRegisterErr] = useState('');
+  const [capitalErr, setCapitalErr] = useState('');
+  const [spacialErr, setSpacialErr] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   const {createUser, setUser, signInWithGoogle, updateUserProfile, signInWithGithub} = useAuth();
@@ -58,23 +58,22 @@ const Register = () => {
   const photo = form.photo.value;
   const email = form.email.value;
   const password = form.password.value;
- console.log({name, photo, email, password});
+
 //  password validation ====================
-//  setRegisterErr('');
-//  setCapitalErr('');
-//  setSpacialErr('');
-//  if(password.length < 6){
-//   setRegisterErr(' is less than 6 characters')
-//   return;
-// }
-// else if(!/A-Z/.test(password)){
-//   setCapitalErr('don,t have a capital letter')
-//   return;
-// }
-// else if(!/^[0-9!@#$%^&*)(+=._-]$/.test(password)){
-//     setSpacialErr(' don,t have a special character')
-//     return;
-// }
+ setRegisterErr('');
+ setCapitalErr('');
+ setSpacialErr('');
+ if(password.length < 6){
+  setRegisterErr(' is less than 6 characters')
+  return;
+}else if(!/[A-Z]/.test(password)){
+  setCapitalErr('don,t have a capital letter')
+  return;
+}
+else if(!/[^0-9!@#$%^&*)(+=.-]/.test(password)){
+    setSpacialErr(' don,t have a special character')
+    return;
+}
 
  try{
   const result = await createUser(email, password)
@@ -93,6 +92,8 @@ catch(err) {
   toast.error('please try agin')
 }
   }
+
+ 
 
     return (
         <div className='my-10 flex justify-center items-center min-h-[calc(100vh-306px)]'>
@@ -231,7 +232,7 @@ catch(err) {
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                 type='password'
               />
-             {/* {
+             {
               registerErr && <span className='text-red-500'>{registerErr}</span>
              }
              {
@@ -239,7 +240,7 @@ catch(err) {
              }
              {
               spacialErr && <span className='text-red-500'>{spacialErr}</span>
-             } */}
+             }
             </div>
             <div className='mt-6'>
               <button

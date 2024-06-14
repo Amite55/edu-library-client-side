@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import TableGrid from "./TableGrid";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import axios from "axios";
 import BooksGrid from "./BooksGrid";
+import { Link } from "react-router-dom";
+import { FaTable } from "react-icons/fa6";
+import { CiGrid41 } from "react-icons/ci";
 
 const AllBooks = () => {
 
@@ -12,14 +14,25 @@ const AllBooks = () => {
         const getData = async() => {
             const {data} = await axios(`${import.meta.env.VITE_API_URL}/books`, {withCredentials: true})
             setBooks(data)
-            console.log(data);
+          
         }
         getData();
     },[setBooks])
 
     return (
      <>
-        <TableGrid/>
+             <div>
+            <div className="flex justify-end gap-4 mr-4 mt-3">
+                <Link to='/table' title="Table view" className="text-2xl text-white btn">
+                    <FaTable />
+                </Link>
+
+                <Link  title="Grid view" className="text-2xl text-white btn">
+                    <CiGrid41 />
+                </Link>
+            </div>
+        </div>
+
         <div>
             <Tabs>
                 <div className='container px-2 py-10 mx-auto'>
