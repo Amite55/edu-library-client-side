@@ -51,10 +51,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    
-
-    
-
     try {
       const result = await signIn(email, password)
        const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {

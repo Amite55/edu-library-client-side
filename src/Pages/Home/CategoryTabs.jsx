@@ -2,13 +2,16 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import BooksCard from './BooksCard';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import useAxiosSecure from '../../customHooks/useAxiosSecure';
+// import axios from 'axios';
 
 const CategoryTabs = () => {
+  const axiosSecure = useAxiosSecure();
     const [books, setBooks] = useState([]);
     useEffect(()=> {
         const getData = async() => {
-            const {data} = await axios(`${import.meta.env.VITE_API_URL}/books`, {withCredentials: true})
+            const {data} = await axiosSecure(`/books`)
+            // const {data} = await axios(`${import.meta.env.VITE_API_URL}/books`, {withCredentials: true})
             setBooks(data)
         }
         getData();
